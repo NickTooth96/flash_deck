@@ -37,7 +37,7 @@ args = parser.parse_args()
 if args.quiz:
     deck_list = os.listdir(__SAVE_PATH__)
     for i, deck_file in enumerate(deck_list):
-        print(f"{i+1}. {deck_file}")
+        print(f"{i+1}. {deck_file}: {parse.load_deck(deck_file).size()} cards.")
     user_input = int(input("Enter the number of the deck you would like to load: "))
     deck = parse.load_deck(deck_list[user_input-1])
 

@@ -44,7 +44,11 @@ class Deck():
     
     def print_report(self):
         """Return the report card."""
-        return self.report_card    
+        return self.report_card
+    
+    def size(self):
+        """Return the size of the deck."""
+        return len(self.deck) 
   
       
 ## Manipulator Functions
