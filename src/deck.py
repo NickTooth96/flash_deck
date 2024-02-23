@@ -2,7 +2,10 @@ import os
 import random
 import pickle
 
-__SAVE_PATH__ = 'save/'
+
+current_file_path = os.path.realpath(__file__)
+current_directory = os.path.dirname(current_file_path)
+__SAVE_PATH__ = os.path.join(current_directory,'save')
 
 CLEAR = 'cls' if os.name == 'nt' else 'clear'
 

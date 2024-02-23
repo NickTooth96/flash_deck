@@ -3,8 +3,8 @@ import src.parse as parse
 import argparse
 import os
 
-__PATH__ = 'data/test.txt'
-__SAVE_PATH__ = 'save/'
+__PATH__ = os.path.join(os.path.dirname(os.path.realpath(__file__)),'data','test.txt')
+__SAVE_PATH__ = os.path.join(os.path.dirname(os.path.realpath(__file__)),'save')
 
 SOURCE_HELP = "The source file to parse. Default is 'data/test.txt'."
 
@@ -38,7 +38,6 @@ if args.quiz:
         print(f"{i+1}. {deck_file.ljust(20)} {parse.load_deck(deck_file).size()} cards.")
     user_input = parse.evaluate_user_answer(input("Enter the number of the deck you would like to load: "))
     deck = parse.load_deck(deck_list[user_input-1])
-    
     deck.quiz()   
     
 elif args.new:
@@ -51,5 +50,9 @@ elif args.new:
     else:
         print("Operation Failed.")
 else:
+    
+    print(__PATH__)
+    print(__SAVE_PATH__)
+ 
     print("No Command given.")
       

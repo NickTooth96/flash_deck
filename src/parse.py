@@ -8,7 +8,7 @@ import src.qaset as qa
 import src.deck as deck
 import pickle
 
-__SAVE_PATH__ = 'save/'
+__SAVE_PATH__ = os.path.join(os.path.dirname(os.path.realpath(__file__)),'../','save')
 TYPES = {"Multiple Choice": 1, "True/False": 2, "Short Answer": 3}
 
 def parse_from_txt(file_path: str):
