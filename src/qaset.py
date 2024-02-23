@@ -1,4 +1,5 @@
 import random
+import src.parse as parse
 
 
 TYPES = {0: None, 1: "Multiple Choice", 2: "True or False", 3: "Short Answer"}
@@ -34,8 +35,8 @@ class QASet:
         if self.type == 1 or self.type == 2:
             for i in range(len(self.options)):
                 print(f"{i+1}. {self.options[i]}")
-            user_answer = input("Enter the number of your answer: ")
-            return self.options[int(user_answer) - 1] == self.answer       
+            user_int = parse.evaluate_user_answer(input("Enter the number of your answer: "))
+            return self.options[user_int - 1] == self.answer       
         elif self.type == 3 or self.type == 0: 
             user_answer = input("Enter your answer: ")
             return user_answer == self.answer

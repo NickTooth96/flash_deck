@@ -51,3 +51,15 @@ def manual_entry():
 def load_deck(name):
     with open(os.path.join(__SAVE_PATH__,name), 'rb') as file:
         return pickle.load(file)
+    
+def evaluate_user_answer(user_input):
+        """Evaluate the user's answer."""
+        out = 0
+        if user_input.isdigit():
+            out = int(user_input)
+        else:
+            for char in user_input:
+                if char != "'":
+                    break
+            out = int(len(user_input))            
+        return out

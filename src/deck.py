@@ -4,6 +4,8 @@ import pickle
 
 __SAVE_PATH__ = 'save/'
 
+CLEAR = 'cls' if os.name == 'nt' else 'clear'
+
 class Deck():
     name = ""
     deck = []
@@ -65,3 +67,17 @@ class Deck():
     def report(self, card, result):
         """Add a card to the report card."""
         self.report_card[card] = result
+        
+    def quiz(self):
+        while not self.empty():
+            self.shuffle()
+            card = self.draw()
+            os.system(CLEAR)
+            result = card.ask_question()
+            self.report(card, result)
+        os.system(CLEAR)
+        
+        print("Quiz complete.")
+        print(f"Score: {self.score() * 100:.2f}%")
+        for card, result in self.print_report().items():
+            print(f"{card.view_question()}: {'Correct' if result else 'Incorrect'}") 

@@ -6,8 +6,6 @@ import os
 __PATH__ = 'data/test.txt'
 __SAVE_PATH__ = 'save/'
 
-CLEAR = 'cls' if os.name == 'nt' else 'clear'
-
 SOURCE_HELP = "The source file to parse. Default is 'data/test.txt'."
 
 
@@ -38,21 +36,10 @@ if args.quiz:
     deck_list = os.listdir(__SAVE_PATH__)
     for i, deck_file in enumerate(deck_list):
         print(f"{i+1}. {deck_file.ljust(20)} {parse.load_deck(deck_file).size()} cards.")
-    user_input = int(input("Enter the number of the deck you would like to load: "))
+    user_input = parse.evaluate_user_answer(input("Enter the number of the deck you would like to load: "))
     deck = parse.load_deck(deck_list[user_input-1])
-
-    while not deck.empty():
-        deck.shuffle()
-        card = deck.draw()
-        os.system(CLEAR)
-        result = card.ask_question()
-        deck.report(card, result)
-    os.system(CLEAR)
     
-    print("Quiz complete.")
-    print(f"Score: {deck.score() * 100:.2f}%")
-    for card, result in deck.print_report().items():
-        print(f"{card.view_question()}: {'Correct' if result else 'Incorrect'}")    
+    deck.quiz()   
     
 elif args.new:
     if args.new == 'file':
