@@ -38,8 +38,9 @@ if args.quiz:
         print(f"{i+1}. {deck_file.ljust(20)} {parse.load_deck(deck_file).size()} cards.")
     user_input = parse.evaluate_user_answer(input("Enter the number of the deck you would like to load: "))
     deck = parse.load_deck(deck_list[user_input-1])
-    deck.quiz()   
-    
+    deck.quiz()
+    # deck.repeat_wrong()
+        
 elif args.new:
     if args.new == 'file':
         cards = parse.parse_from_txt(args.source)
